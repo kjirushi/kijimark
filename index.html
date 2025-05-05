@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KIJI defective products</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0d0d0d;
+      color: #f0f0f0;
+      font-family: 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+    }
+
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    nav {
+      width: 100%;
+      text-align: center;
+      padding: 1.5rem 0;
+      background: transparent;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: #aaa;
+      letter-spacing: 0.05rem;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    a {
+      color: #aaa;
+      text-decoration: underline;
+    }
+
+    a:visited,
+    a:active,
+    a:hover {
+      color: #aaa;
+    }
+
+    header {
+      text-align: center;
+      padding-top: 4rem;
+    }
+
+    img.logo {
+      width: 200px;
+      max-width: 80%;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-size: 1.2rem;
+      font-weight: normal;
+      opacity: 0.8;
+    }
+
+    section {
+      max-width: 700px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+      text-align: center;
+    }
+
+    section h2 {
+      font-size: 1rem;
+      font-weight: normal;
+      margin-bottom: 1.2rem;
+      color: #f0f0f0;
+      letter-spacing: 0.1rem;
+      opacity: 0.8;
+    }
+
+    section p, section li {
+      font-size: 0.95rem;
+      color: #c0c0c0;
+    }
+
+    ul.product-list,
+    ul.project-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0 0;
+    }
+
+    ul.product-list li,
+    ul.project-list li {
+      margin: 0.5rem 0;
+      list-style-type: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+      font-size: 0.75rem;
+      color: #666;
+    }
+
+    footer a {
+      display: block;
+      margin-top: 0.5rem;
+      color: #aaa;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+<body>
+
+  <video autoplay loop muted playsinline id="bg-video">
+    <source src="noise-background.mp4" type="video/mp4">
+  </video>
+
+  <nav>
+    <a href="#about">AbouT</a>
+    <a href="#product">ProducT</a>
+    <a href="#project">ProjecT</a>
+    <a href="#event">EvenT</a>
+    <a href="#recruit">RecruiT</a>
+  </nav>
+
+  <header>
+    <img src="defective-not-product-logo_a.png" alt="Defective ≠ Product Logo" class="logo">
+    <h1>Dedicated to those who cannot even exist in "this corner of the world"</h1>
+  </header>
+
+  <section id="about">
+    <h2>AbouT</h2>
+    <p>
+      We deconstruct meaning and value and attempt to redefine existence.<br>
+      Only complicity in deviance binds us and connects us.<br>
+    </p>
+  </section>
+
+<section id="product">
+  <h2>ProducT</h2>
+  <p>Below are prototypes in development:</p>
+  <ul class="product-list">
+    <li>・<a href="hdyl.html">#"How do you live"?</a></li>
+    <li>・Ξ√∧¬回£‖⌒≒</li>
+    <li>・ぬるっと固まるやつ(The one that hardens smoothly "null")</li>
+    <li>・3742631102</li>
+  </ul>
+</section>
+
+  <section id="project">
+    <h2>ProjecT</h2>
+
+    <model-viewer
+      src="Earth_1_12756.glb"
+      alt="Monochrome Earth"
+      auto-rotate
+      camera-controls
+      background-color="#000000"
+      exposure="0.8"
+      shadow-intensity="0"
+      style="width: 100%; max-width: 500px; height: 500px; margin: 2rem auto; display: block; filter: grayscale(100%) contrast(130%) brightness(90%);">
+    </model-viewer>
+
+    <ul class="project-list">
+      <li><a href="deseltokushima.html">city planning</a></li>
+    </ul>
+  </section>
+
+  <section id="event">
+    <h2>EvenT</h2>
+    <ul class="product-list">
+      <li><a href="ark.html">・ark'</a></li>
+    </ul>
+  </section>
+
+  <section id="recruit">
+    <h2>RecruiT</h2>
+    <p>We are currently not hiring.<br></p>
+  </section>
+
+  <footer>
+    © 2025 Defective ≠ producT.  
+    <a href="https://x.com/k_jirushi_furyo?s=21&t=m0fONt7gOUEtvi2wFCXPHA">Follow us on X</a>
+  </footer>
+
+</body>
+</html>
