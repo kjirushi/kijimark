@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KIJI defective products</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KIJI defective products</title>
+<link href="favicon.ico" rel="icon"/>
+<style>
     body {
       margin: 0;
       padding: 0;
@@ -14,19 +15,6 @@
       font-family: 'Helvetica Neue', sans-serif;
       line-height: 1.6;
     }
-
-    #bg-video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-      opacity: 0.3;
-      pointer-events: none;
-    }
-
     nav {
       width: 100%;
       text-align: center;
@@ -36,54 +24,36 @@
       top: 0;
       z-index: 10;
     }
-
     nav a {
       margin: 0 1rem;
       font-size: 0.9rem;
-      text-decoration: none;
-      color: #aaa;
+      text-decoration: underline;
+      color: #ccc;
       letter-spacing: 0.05rem;
     }
-
     nav a:hover {
       text-decoration: underline;
     }
-
-    a {
-      color: #aaa;
-      text-decoration: underline;
-    }
-
-    a:visited,
-    a:active,
-    a:hover {
-      color: #aaa;
-    }
-
     header {
       text-align: center;
       padding-top: 4rem;
     }
-
     img.logo {
       width: 200px;
       max-width: 80%;
       margin-bottom: 1.5rem;
     }
-
     h1 {
       font-size: 1.2rem;
       font-weight: normal;
       opacity: 0.8;
     }
-
     section {
       max-width: 700px;
       margin: 4rem auto;
       padding: 0 1.5rem;
       text-align: center;
     }
-
     section h2 {
       font-size: 1rem;
       font-weight: normal;
@@ -92,117 +62,301 @@
       letter-spacing: 0.1rem;
       opacity: 0.8;
     }
-
     section p, section li {
       font-size: 0.95rem;
       color: #c0c0c0;
     }
-
-    ul.product-list,
-    ul.project-list {
+    ul.product-list {
       list-style: none;
       padding: 0;
       margin: 1rem 0 0 0;
     }
-
-    ul.product-list li,
-    ul.project-list li {
+    ul.product-list li {
       margin: 0.5rem 0;
-      list-style-type: none;
     }
-
+    .amplitude-player {
+      background: #111;
+      padding: 1rem;
+      border-radius: 6px;
+      margin-top: 1rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .song-meta {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+    .song-img {
+      width: 100px;
+      border-radius: 4px;
+    }
+    .time {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+      color: #ccc;
+      font-size: 0.85rem;
+    }
+    .amplitude-seek-bar {
+      width: 150px;
+    }
     footer {
       text-align: center;
       padding: 3rem 1rem 2rem;
       font-size: 0.75rem;
       color: #666;
     }
-
     footer a {
       display: block;
       margin-top: 0.5rem;
       color: #aaa;
     }
-
     footer a:hover {
       text-decoration: underline;
     }
   </style>
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-</head>
+<link href="https://cdn.jsdelivr.net/npm/amplitudejs@5.3.2/dist/amplitude.min.css" rel="stylesheet"/><style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0e0e0e;
+      font-family: 'Arial', sans-serif;
+      color: #ccc;
+    }
+
+    .player-container {
+      width: 90%;
+      max-width: 900px;
+      margin: 50px auto;
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px #000;
+    }
+
+    .now-playing {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid #333;
+    }
+
+    .now-playing img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-right: 20px;
+    }
+
+    .now-playing-details {
+      flex: 1;
+    }
+
+    .now-playing-details h2 {
+      margin: 0;
+      font-size: 1.2rem;
+      color: #eee;
+    }
+
+    .caption {
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-top: 5px;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      background: #111;
+    }
+
+    .controls button {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      margin: 0 10px;
+      cursor: pointer;
+    }
+
+    .progress-container {
+      width: 100%;
+      height: 5px;
+      background-color: #444;
+      position: relative;
+      margin: 10px 0;
+    }
+
+    .progress {
+      width: 0%;
+      height: 100%;
+      background-color: #29f;
+    }
+
+    .playlist {
+      max-height: 160px;
+      overflow-y: auto;
+    }
+
+    .song {
+      padding: 15px 20px;
+      border-top: 1px solid #333;
+      cursor: pointer;
+    }
+
+    .song:hover {
+      background-color: #222;
+    }
+
+    .song.active {
+      background-color: #333;
+    }
+
+    .time {
+      font-size: 0.75rem;
+      text-align: right;
+      padding: 0 20px;
+      color: #999;
+    }
+  </style></head>
 <body>
-
-  <video autoplay loop muted playsinline id="bg-video">
-    <source src="noise-background.mp4" type="video/mp4">
-  </video>
-
-  <nav>
-    <a href="#about">AbouT</a>
-    <a href="#product">ProducT</a>
-    <a href="#project">ProjecT</a>
-    <a href="#event">EvenT</a>
-    <a href="#recruit">RecruiT</a>
-  </nav>
-
-  <header>
-    <img src="defective-not-product-logo_a.png" alt="Defective ≠ Product Logo" class="logo">
-    <h1>Dedicated to those who cannot even exist in "this corner of the world"</h1>
-  </header>
-
-  <section id="about">
-    <h2>AbouT</h2>
-    <p>
-      We deconstruct meaning and value and attempt to redefine existence.<br>
-      Only complicity in deviance binds us and connects us.<br>
-    </p>
-  </section>
-
-<section id="product">
-  <h2>ProducT</h2>
-  <p>Below are prototypes in development:</p>
-  <ul class="product-list">
-    <li>・<a href="hdyl.html">#"How do you live"?</a></li>
-    <li>・Ξ√∧¬回£‖⌒≒</li>
-    <li>・ぬるっと固まるやつ(The one that hardens smoothly "null")</li>
-    <li>・3742631102</li>
-  </ul>
+<nav>
+<a href="#about">AbouT</a>
+<a href="#product">ProducT</a>
+<a href="#event">EvenT</a>
+<a href="#project">ProjecT</a>
+<a href="#recruit">RecruiT</a>
+</nav>
+<header>
+<img alt="Defective ≠ Product Logo" class="logo" src="defective-not-product-logo_a.png"/>
+<h1>Dedicated to those who cannot even exist in "this corner of the world"</h1>
+</header>
+<section id="about">
+<h2>AbouT</h2>
+<p>
+      We deconstruct meaning and value and attempt to redefine existence.<br/>
+      Only complicity in deviance binds us and connects us.<br/>
+</p>
 </section>
+<section id="product">
+<h2>ProducT</h2>
+<p>Below are prototypes in development:</p>
+<ul class="product-list">
+<li>・<a href="#how">"How do you live"?</a></li>
+<li>・Ξ√∧¬回£‖⌒≒</li>
+<li>・ぬるっと固まるやつ(The one that hardens smoothly "null")</li>
+<li>・3742631102</li>
+<li>・sound track</li><br/><div class="player-container" id="player">
+<div class="now-playing">
+<img data-amplitude-song-info="cover_art_url"/>
+<div class="now-playing-details">
+<h2 data-amplitude-song-info="name"></h2>
+<div class="caption" id="track-caption">キャプションがここに表示されます</div>
+</div>
+</div>
+<div class="controls">
+<button class="amplitude-prev">◀◀</button>
+<button class="amplitude-play-pause">►/❙❙</button>
+<button class="amplitude-next">▶▶</button>
+</div>
+<div class="progress-container">
+<progress class="amplitude-song-played-progress progress" id="song-progress"></progress>
+</div>
+<div class="time">
+<span class="amplitude-current-time">0:00</span> / <span class="amplitude-duration-time">0:00</span>
+</div>
+<div class="playlist" id="playlist">
+<div amplitude-song-index="0" class="song">・僕はずんだもんなのだ</div>
+<div amplitude-song-index="1" class="song">・Zundaless</div>
+</div>
+</div>
+</ul>
 
-  <section id="project">
-    <h2>ProjecT</h2>
+</section>
+<section id="project">
+<h2>ProjecT</h2>
+<div id="globe-container" style="height: 500px;"></div>
+<p><a href="deseltokushima.html">・city planning</a></p>
+</section>
+<section id="event">
+<h2>EvenT</h2>
+<ul class="product-list">
+<li>・<a href="ark.html">ark'</a></li>
+</ul>
+</section>
+<section id="recruit">
+<h2>RecruiT</h2>
+<p>We are currently not hiring.</p>
+</section>
+<footer>
+    © 2025 Defective ≠ producT.
+    <a href="https://x.com/k_jirushi_furyo?s=21&amp;t=m0fONt7gOUEtvi2wFCXPHA">Follow us on X</a>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/amplitudejs@5.3.2/dist/amplitude.min.js"></script>
+<script>
+    Amplitude.init({
+      songs: [{
+        name: "Zundaless",
+        artist: "キ印不良品",
+        url: "zundaless.mp3",
+        cover_art_url: "zundaless_art.png"
+      }]
+    });
 
-    <model-viewer
-      src="Earth_1_12756.glb"
-      alt="Monochrome Earth"
-      auto-rotate
-      camera-controls
-      background-color="#000000"
-      exposure="0.8"
-      shadow-intensity="0"
-      style="width: 100%; max-width: 500px; height: 500px; margin: 2rem auto; display: block; filter: grayscale(100%) contrast(130%) brightness(90%);">
-    </model-viewer>
+    function formatTime(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs < 10 ? '0' + secs : secs}`;
+    }
 
-    <ul class="project-list">
-      <li><a href="deseltokushima.html">city planning</a></li>
-    </ul>
-  </section>
+    setInterval(() => {
+      const current = Amplitude.getSongPlayedSeconds();
+      const duration = Amplitude.getSongDuration();
+      document.getElementById('current-time').innerText = formatTime(current);
+      document.getElementById('duration-time').innerText = formatTime(duration);
+    }, 500);
+  </script>
+<script src="https://cdn.jsdelivr.net/npm/amplitudejs@5.3.2/dist/amplitude.min.js"></script><script>
+  Amplitude.init({
+    songs: [
+      {
+        name: "僕はずんだもんなのだ",
+        url: "track1.mp3",
+        cover_art_url: "track1_art.png"
+      },
+      {
+        name: "Zundaless",
+        url: "track2.mp3",
+        cover_art_url: "track2_art.png"
+      }
+    ],
+    callbacks: {
+      play: function () {
+        var activeIndex = Amplitude.getActiveIndex();
+        var caption = [
+          "ずんだ無き世界。誰が望んだ世界？願いすらも愛ならば",
+          "ずんだ無き世界。誰が望んだ世界？願いすらも愛ならば"
+        ];
+        document.getElementById("track-caption").innerText = caption[activeIndex];
+        var songs = document.querySelectorAll(".song");
+        songs.forEach((song, index) => {
+          song.classList.toggle("active", index === activeIndex);
+        });
+      }
+    }
+  });
 
-  <section id="event">
-    <h2>EvenT</h2>
-    <ul class="product-list">
-      <li><a href="ark.html">・ark'</a></li>
-    </ul>
-  </section>
-
-  <section id="recruit">
-    <h2>RecruiT</h2>
-    <p>We are currently not hiring.<br></p>
-  </section>
-
-  <footer>
-    © 2025 Defective ≠ producT.  
-    <a href="https://x.com/k_jirushi_furyo?s=21&t=m0fONt7gOUEtvi2wFCXPHA">Follow us on X</a>
-  </footer>
-
-</body>
+  document.querySelectorAll(".song").forEach((el, index) => {
+    el.addEventListener("click", () => {
+      Amplitude.playSongAtIndex(index);
+    });
+  });
+</script></body>
 </html>
